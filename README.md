@@ -1,6 +1,6 @@
-# 🧮 Simple Calculator in Python
+# 🧮 Simple Calculator with Tkinter (GUI)
 
-This is a basic command-line calculator written in Python. It performs simple arithmetic operations such as:
+This project is a simple calculator built using **Python's Tkinter** library for a graphical user interface. It supports basic arithmetic operations like:
 
 - Addition
 - Subtraction
@@ -9,16 +9,16 @@ This is a basic command-line calculator written in Python. It performs simple ar
 
 ---
 
+## 📦 Requirements
+
+- Python 3.x
+- Tkinter (already included with standard Python installations)
+
+---
+
 ## 🚀 How to Run
 
-### 1. Requirements
-- Python 3.x installed on your system
-
-### 2. Steps to Run
-
-1. Clone or download this repository.
-2. Open a terminal in the folder where the script is saved.
-3. Run the script using:
+1. Make sure Python is installed. You can check by running:
 
 ```bash
-python calculator.py
+python --version
