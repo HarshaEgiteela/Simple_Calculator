@@ -1,40 +1,53 @@
-# Simple Calculator in Python
+import tkinter as tk
 
-def add(x, y):
-    return x + y
+# Function to update expression in the text entry box
+def click(button_text):
+    current = entry.get()
+    entry.delete(0, tk.END)
+    entry.insert(0, current + button_text)
 
-def subtract(x, y):
-    return x - y
+# Function to evaluate the expression
+def calculate():
+    try:
+        result = eval(entry.get())
+        entry.delete(0, tk.END)
+        entry.insert(0, str(result))
+    except Exception as e:
+        entry.delete(0, tk.END)
+        entry.insert(0, "Error")
 
-def multiply(x, y):
-    return x * y
+# Function to clear the entry
+def clear():
+    entry.delete(0, tk.END)
 
-def divide(x, y):
-    if y != 0:
-        return x / y
-    else:
-        return "Error: Cannot divide by zero"
+# Create the main window
+root = tk.Tk()
+root.title("Simple Calculator")
 
-# User input
-print("Select operation:")
-print("1. Add")
-print("2. Subtract")
-print("3. Multiply")
-print("4. Divide")
+# Entry widget to show expressions
+entry = tk.Entry(root, width=25, font=('Arial', 18), borderwidth=2, relief='solid', justify='right')
+entry.grid(row=0, column=0, columnspan=4, padx=10, pady=10)
 
-choice = input("Enter choice (1/2/3/4): ")
+# Button layout
+buttons = [
+    ('7', '8', '9', '/'),
+    ('4', '5', '6', '*'),
+    ('1', '2', '3', '-'),
+    ('0', '.', '=', '+')
+]
 
-num1 = float(input("Enter first number: "))
-num2 = float(input("Enter second number: "))
+# Create buttons
+for i, row in enumerate(buttons):
+    for j, text in enumerate(row):
+        if text == '=':
+            btn = tk.Button(root, text=text, width=5, height=2, font=('Arial', 18), command=calculate)
+        else:
+            btn = tk.Button(root, text=text, width=5, height=2, font=('Arial', 18), command=lambda t=text: click(t))
+        btn.grid(row=i+1, column=j, padx=5, pady=5)
 
-# Perform operation
-if choice == '1':
-    print("Result:", add(num1, num2))
-elif choice == '2':
-    print("Result:", subtract(num1, num2))
-elif choice == '3':
-    print("Result:", multiply(num1, num2))
-elif choice == '4':
-    print("Result:", divide(num1, num2))
-else:
-    print("Invalid input")
+# Clear button
+clear_btn = tk.Button(root, text='C', width=21, height=2, font=('Arial', 18), command=clear)
+clear_btn.grid(row=5, column=0, columnspan=4, padx=5, pady=5)
+
+# Start the GUI loop
+root.mainloop()
